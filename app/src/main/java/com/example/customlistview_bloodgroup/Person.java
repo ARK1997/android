@@ -5,15 +5,15 @@ class Person {
     private String name;
     private String description;
     private String blood_grp;
-    private int id;
+   // private int id;
 
 
 
-    public Person(String name, String description, String blood_grp, int id) {
+    public Person(String name, String description, String blood_grp) {
         this.name = name;
         this.description = description;
         this.blood_grp= blood_grp;
-        this.id=id;
+      //  this.id=id;
 
     }
 
@@ -29,7 +29,7 @@ class Person {
         return blood_grp;
     }
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 }

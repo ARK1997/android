@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         lvPerson = findViewById(R.id.lvBloodGroups);
         list = new ArrayList<>();
 
-        Person p1 = new Person("Perry","No diseases","A+",R.mipmap.p1);
-        Person p2 = new Person("Lucifer","Suffering from Corona","O-",R.mipmap.p2);
-        Person p3 = new Person("Lisa","Suffering from Jaundice","AB+",R.mipmap.p3);
-        Person p4 = new Person("Candice","No diseases","B+",R.mipmap.p4);
+        Person p1 = new Person("Perry","No diseases","A+");
+        Person p2 = new Person("Lucifer","Suffering from Corona","O-");
+        Person p3 = new Person("Lisa","Suffering from Jaundice","AB+");
+        Person p4 = new Person("Candice","No diseases","B+");
 
         list.add(p1);
         list.add(p2);
