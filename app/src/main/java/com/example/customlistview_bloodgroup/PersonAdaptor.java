@@ -2,12 +2,14 @@ package com.example.customlistview_bloodgroup;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +22,9 @@ public class PersonAdaptor extends ArrayAdapter<Person> {
 
 private Context context;
 private ArrayList<Person>  values;
+DatabaseHelper db;
+
+PersonConstants pc =  new PersonConstants();
 String imgurl[] = {"https://cdn.now.howstuffworks.com/media-content/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg",
                     "https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg",
                     "https://cdn.psychologytoday.com/sites/default/files/styles/image-article_inline_full/public/field_blog_entry_images/2018-09/shutterstock_648907024.jpg?itok=ji6Xj8tv",
@@ -27,10 +32,10 @@ String imgurl[] = {"https://cdn.now.howstuffworks.com/media-content/0b7f4e9b-f59
                     };
 
 
-    public PersonAdaptor(@NonNull Context context, ArrayList<Person> list) {
-        super(context,R.layout.row_layout,list);
+    public PersonAdaptor(@NonNull Context context) {
+        super(context,R.layout.row_layout);
         this.context = context;
-        this.values = list;
+       // this.values = list;
 
     }
 
@@ -50,10 +55,15 @@ String imgurl[] = {"https://cdn.now.howstuffworks.com/media-content/0b7f4e9b-f59
         ImageView ivPhoto = rowview.findViewById(R.id.ivPerson);
         Picasso.with(context).load(imgurl[position]).resize(80,100).into(ivPhoto);
 
+        Cursor c = db.viewData();
+
         tvName.setText(values.get(position).getName());
         tvBlood.setText(values.get(position).getBlood_grp());
         tvDes.setText(values.get(position).getDescription());
 
+//        tvName.setText(values.get(position).getName());
+//        tvBlood.setText(values.get(position).getBlood_grp());
+//        tvDes.setText(values.get(position).getDescription());
         //ivPhoto.setImageResource(values.get(position).getId());
 
         return rowview;

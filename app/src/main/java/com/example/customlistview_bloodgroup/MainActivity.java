@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView lvPerson;
     ArrayList<Person> list;
+    DatabaseHelper db = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +26,22 @@ public class MainActivity extends AppCompatActivity {
         Person p3 = new Person("Lisa","Suffering from Jaundice","AB+");
         Person p4 = new Person("Candice","No diseases","B+");
 
-        list.add(p1);
-        list.add(p2);
-        list.add(p3);
-        list.add(p4);
 
-        PersonAdaptor personAdaptor = new PersonAdaptor(this,list);
 
-        lvPerson.setAdapter(personAdaptor);
+
+        db.insertData(p1);
+        db.insertData(p2);
+        db.insertData(p3);
+        db.insertData(p4);
+
+
+//        list.add(p1);
+//        list.add(p2);
+//        list.add(p3);
+//        list.add(p4);
+
+       PersonAdaptor personAdaptor = new PersonAdaptor(this);
+       lvPerson.setAdapter(personAdaptor);
 
     }
 }
