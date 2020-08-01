@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 class DatabaseHelper extends SQLiteOpenHelper {
 
 
@@ -23,7 +25,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+PersonConstants.DB_TABLE);
+            onCreate(sqLiteDatabase);
     }
 
 
@@ -31,14 +34,15 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+
         contentValues.put(PersonConstants.NAME,person.getName());
         contentValues.put(PersonConstants.DESCRIPTION,person.getDescription());
         contentValues.put(PersonConstants.BLOOD,person.getBlood_grp());
 
-        long result= db.insert(PersonConstants.DB_TABLE,null,contentValues);
-        //insrt returns -1, if data is not inserted
+         long result = db.insert(PersonConstants.DB_TABLE,null,contentValues);
+        //insert returns -1, if data is not inserted
 
-        //return result!=-1;
+       // return (result!=-1)?true:false;
     }
 
     public Cursor viewData()
@@ -48,6 +52,33 @@ class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
 
         return cursor;
+    }
+
+    public void deleteItem() {
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.execSQL("DELETE from "+ PersonConstants.DB_TABLE);
+    }
+
+    public ArrayList<Person> getData(){
+
+        ArrayList<Person> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * FROM "+PersonConstants.DB_TABLE,null);
+
+        cursor.moveToFirst();
+        while (cursor.moveToNext())
+        {
+            String name = cursor.getString(cursor.getColumnIndex(PersonConstants.NAME));
+            String desc = cursor.getString(cursor.getColumnIndex(PersonConstants.DESCRIPTION));
+            String blood = cursor.getString(cursor.getColumnIndex(PersonConstants.BLOOD));
+                Person p = new Person(name,desc,blood);
+
+                list.add(p);
+
+
+        }
+        return list;
     }
 
 }

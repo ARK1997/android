@@ -13,7 +13,7 @@ class Person {
         this.name = name;
         this.description = description;
         this.blood_grp= blood_grp;
-      //  this.id=id;
+        //this.id=id;
 
     }
 
@@ -29,7 +29,7 @@ class Person {
         return blood_grp;
     }
 
-//    public int getId() {
-//        return id;
-//    }
+//   public int getId() {
+//       return id;
+//   }
 }
