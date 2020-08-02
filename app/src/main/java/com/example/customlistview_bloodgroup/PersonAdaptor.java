@@ -54,7 +54,7 @@ String[] imgurl = {"https://cdn.now.howstuffworks.com/media-content/0b7f4e9b-f59
 
         ImageView ivPhoto = rowview.findViewById(R.id.ivPerson);
         if(position<4){
-            Picasso.with(context).load(imgurl[position]).resize(80,100).into(ivPhoto);
+            Picasso.with(context).load(imgurl[position]).resize(90,100).into(ivPhoto);
 
         }
 
