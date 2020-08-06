@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etName,etURL,etDesc,etBlood;
     Button btAdd,btView;
 
-    ArrayList<Person> list;
+    //ArrayList<Person> list;
     String name,blood,description,url;
     DatabaseHelper db = new DatabaseHelper(this);
 
@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         etBlood=findViewById(R.id.etBlood);
         etName=findViewById(R.id.etName);
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,ViewList.class);
+                Intent intent = new Intent(MainActivity.this,ViewList2.class);
                 startActivity(intent);
             }
         });

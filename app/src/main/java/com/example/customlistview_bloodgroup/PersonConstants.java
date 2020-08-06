@@ -15,6 +15,7 @@ public class PersonConstants {
     public static final String URL = "URL";
 
     public static final String CREATE_TABLE= "CREATE TABLE "+DB_TABLE+"( "+
+
             NAME +" TEXT,"+
             DESCRIPTION + " TEXT,"+
             BLOOD + " TEXT, "+

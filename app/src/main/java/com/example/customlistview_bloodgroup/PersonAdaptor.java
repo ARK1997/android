@@ -54,11 +54,7 @@ private ArrayList<Person>  values;
 
         ImageView ivPhoto = rowview.findViewById(R.id.ivPerson);
 
-            Picasso.with(context).load(values.get(position).getURL()).resize(90,100).into(ivPhoto);
-
-
-
-
+        Picasso.with(context).load(values.get(position).getURL()).resize(90,100).placeholder(R.drawable.ic_launcher_foreground).into(ivPhoto);
 
         tvName.setText(values.get(position).getName());
         tvBlood.setText(values.get(position).getBlood_grp());

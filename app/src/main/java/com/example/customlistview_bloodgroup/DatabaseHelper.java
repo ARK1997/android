@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -67,19 +68,24 @@ class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * FROM "+PersonConstants.DB_TABLE,null);
 
-        cursor.moveToFirst();
-        while (cursor.moveToNext())
-        {
-            String name = cursor.getString(cursor.getColumnIndex(PersonConstants.NAME));
-            String desc = cursor.getString(cursor.getColumnIndex(PersonConstants.DESCRIPTION));
-            String blood = cursor.getString(cursor.getColumnIndex(PersonConstants.BLOOD));
-            String url = cursor.getString(cursor.getColumnIndex(PersonConstants.URL));
+            if (cursor.getCount()==0){
+                list.add(null);
+                return list;
+            }
+
+            cursor.moveToFirst();
+            while (cursor.moveToNext())
+            {
+                String name = cursor.getString(cursor.getColumnIndex(PersonConstants.NAME));
+                String desc = cursor.getString(cursor.getColumnIndex(PersonConstants.DESCRIPTION));
+                String blood = cursor.getString(cursor.getColumnIndex(PersonConstants.BLOOD));
+                String url = cursor.getString(cursor.getColumnIndex(PersonConstants.URL));
                 Person p = new Person(name,desc,blood,url);
 
                 list.add(p);
 
-
         }
+
         return list;
     }
 
