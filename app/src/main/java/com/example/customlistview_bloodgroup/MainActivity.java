@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         etURL = findViewById(R.id.etURl);
         btAdd = findViewById(R.id.btInsert);
         btView = findViewById(R.id.btView);
-        etURL.setText("https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg");
+
 
 
         btView.setOnClickListener(new View.OnClickListener() {
