@@ -5,16 +5,18 @@ class Person {
     private String name;
     private String description;
     private String blood_grp;
-   // private int id;
+    private String URL;
 
-
-
-    public Person(String name, String description, String blood_grp) {
+    public Person(String name, String description, String blood_grp,String URL) {
         this.name = name;
         this.description = description;
         this.blood_grp= blood_grp;
-        //this.id=id;
+        this.URL = URL;
 
+    }
+
+    public String getURL() {
+        return URL;
     }
 
     public String getName() {

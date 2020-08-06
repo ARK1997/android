@@ -30,7 +30,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void insertData(Person person){
+    public boolean insertData(Person person){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -38,11 +38,12 @@ class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(PersonConstants.NAME,person.getName());
         contentValues.put(PersonConstants.DESCRIPTION,person.getDescription());
         contentValues.put(PersonConstants.BLOOD,person.getBlood_grp());
+        contentValues.put(PersonConstants.URL, person.getURL());
 
          long result = db.insert(PersonConstants.DB_TABLE,null,contentValues);
         //insert returns -1, if data is not inserted
 
-       // return (result!=-1)?true:false;
+         return (result!=-1)?true:false;
     }
 
     public Cursor viewData()
@@ -72,7 +73,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
             String name = cursor.getString(cursor.getColumnIndex(PersonConstants.NAME));
             String desc = cursor.getString(cursor.getColumnIndex(PersonConstants.DESCRIPTION));
             String blood = cursor.getString(cursor.getColumnIndex(PersonConstants.BLOOD));
-                Person p = new Person(name,desc,blood);
+            String url = cursor.getString(cursor.getColumnIndex(PersonConstants.URL));
+                Person p = new Person(name,desc,blood,url);
 
                 list.add(p);
 

@@ -2,6 +2,7 @@ package com.example.customlistview_bloodgroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,9 +14,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    EditText etName,etURL,etDesc,etBlood;
+    Button btAdd,btView;
 
-    ListView lvPerson;
     ArrayList<Person> list;
+    String name,blood,description,url;
     DatabaseHelper db = new DatabaseHelper(this);
 
     @Override
@@ -23,43 +26,72 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db.deleteItem();
-
-        lvPerson = findViewById(R.id.lvBloodGroups);
-
-          list = new ArrayList<>();
-
-        Person p1 = new Person("Perry","No diseases","A+");
-        Person p2 = new Person("Lucifer","Suffering from Corona","O-");
-        Person p3 = new Person("Lisa","Suffering from Jaundice","AB+");
-        Person p4 = new Person("Candice","No diseases","B+");
-
-        db.insertData(p1);
-        db.insertData(p2);
-        db.insertData(p3);
-        db.insertData(p4);
 
 
-//        list.add(p1);
-//        list.add(p2);
-//        list.add(p3);
-//        list.add(p4);
+        etBlood=findViewById(R.id.etBlood);
+        etName=findViewById(R.id.etName);
+        etDesc = findViewById(R.id.etDesc);
+        etURL = findViewById(R.id.etURl);
+        btAdd = findViewById(R.id.btInsert);
+        btView = findViewById(R.id.btView);
+        etURL.setText("https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg");
 
-        loaddata();
 
+        btView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ViewList.class);
+                startActivity(intent);
+            }
+        });
+
+        btAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                name = etName.getText().toString();
+                blood= etBlood.getText().toString();
+                description = etDesc.getText().toString();
+                url = etURL.getText().toString();
+
+                if (etName.length()!=0&&etBlood.length()!=0&&etDesc.length()!=0&&etURL.length()!=0) {
+                    Person p = new Person(name,description,blood,url);
+                    add(p);
+                    etName.setText("");
+                    etBlood.setText("");
+                    etDesc.setText("");
+                    etURL.setText("");
+
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Please fill the fields", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        });
+
+
+    }
+
+    public void add(Person person){
+
+        boolean wasInserted= db.insertData(person);
+
+        if(wasInserted)
+        {
+            Toast.makeText(MainActivity.this, "Data Added", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
 
 
-
-    public void loaddata(){
-
-        list = db.getData();
-        PersonAdaptor personAdaptor = new PersonAdaptor(this,list);
-        lvPerson.setAdapter(personAdaptor);
-
-    }
 }
 
   //  public void insertToDB(){
