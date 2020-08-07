@@ -66,12 +66,10 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
         ArrayList<Person> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("Select * FROM "+PersonConstants.DB_TABLE,null);
+        Cursor cursor = db.query(PersonConstants.DB_TABLE,null,null,null,null,null,null);
 
-            if (cursor.getCount()==0){
-                list.add(null);
-                return list;
-            }
+
+
 
             cursor.moveToFirst();
             while (cursor.moveToNext())

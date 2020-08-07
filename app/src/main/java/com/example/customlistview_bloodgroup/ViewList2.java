@@ -18,20 +18,31 @@ public class ViewList2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_list2);
 
+        //Adding back button
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
+
         listView = findViewById(R.id.lvBloodGroups);
         helper = new DatabaseHelper(this);
 
         ArrayList<Person> list = helper.getData();
         
-        if (list == null)
+        if (list.isEmpty())
         {
-            Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No Data Inserted", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            PersonAdaptor personAdaptor = new PersonAdaptor(this, list);
+            listView.setAdapter(personAdaptor);
+            personAdaptor.notifyDataSetChanged();
         }
 
-        PersonAdaptor personAdaptor = new PersonAdaptor(this,list);
-        listView.setAdapter(personAdaptor);
-        personAdaptor.notifyDataSetChanged();
+    }
 
-
+    // Adding functionality to back button
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

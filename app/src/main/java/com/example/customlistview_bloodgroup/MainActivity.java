@@ -21,10 +21,15 @@ public class MainActivity extends AppCompatActivity {
     String name,blood,description,url;
     DatabaseHelper db = new DatabaseHelper(this);
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         etBlood=findViewById(R.id.etBlood);
         etName=findViewById(R.id.etName);
@@ -92,25 +97,4 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-  //  public void insertToDB(){
-//
-//        String name = etName.getText().toString();
-//        String desc = etDesc.getText().toString();
-//        String blood = etBlood.getText().toString();
-//
-//
-//        if (!name.equals("")&&db.insertData(new Person(name,desc,blood)))
-//        {
-//            Toast.makeText(MainActivity.this, "Data Added", Toast.LENGTH_SHORT).show();
-//            etName.setText("");
-//            etDesc.setText("");
-//            etBlood.setText("");
-//        }
-//
-//        else{
-//
-//            Toast.makeText(MainActivity.this, "Data not added", Toast.LENGTH_SHORT).show();
-//
-//        }
-//
-//    }
+
