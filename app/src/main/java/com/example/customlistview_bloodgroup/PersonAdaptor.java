@@ -24,14 +24,6 @@ private Context context;
 private ArrayList<Person>  values;
 
 
-
-//String[] imgurl = {"https://cdn.now.howstuffworks.com/media-content/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg",
-//                    "https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg",
-//                    "https://cdn.psychologytoday.com/sites/default/files/styles/image-article_inline_full/public/field_blog_entry_images/2018-09/shutterstock_648907024.jpg?itok=ji6Xj8tv",
-//                        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSWliyP7gW39cCy0bxxFQQLf2l6ANn8kSBeUA&usqp=CAU"
-//                    };
-
-
     public PersonAdaptor(@NonNull Context context,ArrayList<Person> list) {
         super(context,R.layout.row_layout,list);
         this.context = context;
@@ -60,10 +52,6 @@ private ArrayList<Person>  values;
         tvBlood.setText(values.get(position).getBlood_grp());
         tvDes.setText(values.get(position).getDescription());
 
-//        tvName.setText(values.get(position).getName());
-//        tvBlood.setText(values.get(position).getBlood_grp());
-//        tvDes.setText(values.get(position).getDescription());
-        //ivPhoto.setImageResource(values.get(position).getId());
 
         return rowview;
 
