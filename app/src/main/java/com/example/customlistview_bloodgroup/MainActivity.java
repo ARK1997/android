@@ -15,13 +15,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     EditText etName,etURL,etDesc,etBlood;
-    Button btAdd,btView;
+    Button btAdd,btView,btBuilding;
+   // ListView listView;
 
-    //ArrayList<Person> list;
+
     String name,blood,description,url;
     DatabaseHelper db = new DatabaseHelper(this);
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +36,22 @@ public class MainActivity extends AppCompatActivity {
         etURL = findViewById(R.id.etURl);
         btAdd = findViewById(R.id.btInsert);
         btView = findViewById(R.id.btView);
+        btBuilding = findViewById(R.id.btBuilding);
 
+        btBuilding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ViewListBuilding.class);
 
+                startActivity(intent);
+            }
+        });
 
         btView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,ViewList2.class);
+
                 startActivity(intent);
             }
         });
