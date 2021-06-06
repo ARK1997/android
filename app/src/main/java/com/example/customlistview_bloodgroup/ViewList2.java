@@ -31,7 +31,7 @@ public class ViewList2 extends AppCompatActivity {
         ArrayList<Person> list = helper.getData();
 
         if (list.isEmpty()) {
-            Toast.makeText(this, "No Data Inserted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Insert Some Data", Toast.LENGTH_SHORT).show();
         } else {
             PersonAdaptor personAdaptor = new PersonAdaptor(this, list);
             listView.setAdapter(personAdaptor);
